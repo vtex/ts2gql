@@ -1,0 +1,13 @@
+import * as doctrine from 'doctrine';
+import * as typescript from 'typescript';
+import * as types from './types';
+export declare function documentationForNode(node: typescript.Node, source?: string): doctrine.ParseResult | undefined;
+export declare function hasDocTag(node: types.TranspiledNode, regex: RegExp): boolean;
+export declare function extractTagDescription(doc: doctrine.ParseResult | undefined, regex: RegExp): string | null;
+export declare function isReferenceType(node: types.TypeNode): node is types.ReferenceTypeNode;
+export declare function isNullableDefinition(node: types.TypeDefinitionNode): node is types.UnionTypeDefinitionNode | types.EnumTypeDefinitionNode | types.ScalarTypeDefinitionNode | types.DefinitionAliasNode;
+export declare function isOutputType(node: types.TypeNode): node is types.OutputTypeNode;
+export declare function isInputType(node: types.TypeNode): node is types.InputTypeNode;
+export declare function isScalar(node: types.TypeNode): node is types.ScalarTypeNode;
+export declare function isBuiltInScalar(node: types.TypeNode): node is types.BuiltInScalarTypeNode;
+export declare function isWrappingType(node: types.TypeNode): node is types.WrappingTypeNode;
