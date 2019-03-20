@@ -162,7 +162,7 @@ export default class Emitter {
     if (!members.length) {
       members.push({
         type: Types.NodeType.PROPERTY,
-        name: '__placeholder',
+        name: '_placeholder',
         signature: {type: Types.NodeType.BOOLEAN},
       });
     }

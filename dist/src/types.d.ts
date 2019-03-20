@@ -24,7 +24,7 @@ export declare enum NodeType {
     NULL = "null",
     UNDEFINED = "undefined",
     NOT_NULL = "not null",
-    VALUE = "value",
+    VALUE = "value"
 }
 export interface InterfaceNode extends ComplexNode {
     type: NodeType.INTERFACE;

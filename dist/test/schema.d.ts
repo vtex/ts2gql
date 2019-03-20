@@ -13,32 +13,32 @@ export interface Starship {
 export declare enum Color {
     'Red' = 0,
     'Yellow' = 1,
-    'Blue' = 2,
+    'Blue' = 2
 }
 export declare enum Size {
     'Big' = 0,
-    'Small' = 1,
+    'Small' = 1
 }
 export declare enum Planet {
     CHTHONIAN = "CHTHONIAN",
     CIRCUMBINARY = "CIRCUMBINARY",
-    PLUTOID = "PLUTOID",
+    PLUTOID = "PLUTOID"
 }
 export declare enum Seasons {
     SPRING = "SPRING",
     SUMMER = "SUMMER",
     FALL = "FALL",
-    WINTER = "WINTER",
+    WINTER = "WINTER"
 }
 export declare enum Cloud {
     ALTOSTRATUS,
     CIRROCUMULUS,
-    CUMULONIMBUS,
+    CUMULONIMBUS
 }
 export declare enum Ordinal {
     FIRST = 1,
     SECOND = 2,
-    THIRD = 3,
+    THIRD = 3
 }
 export declare type QuarkFlavor = "UP" | "DOWN" | "CHARM" | "STRANGE" | "TOP" | "BOTTOM";
 export declare type UnionOfInterfaceTypes = Human | Droid | Starship;
