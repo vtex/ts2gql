@@ -2,7 +2,7 @@ import * as doctrine from 'doctrine';
 import * as typescript from 'typescript';
 import * as types from './types';
 export interface CollectorType {
-    resolved: types.TypeDefinitionMap;
+    types: types.TypeDefinitionMap;
     root?: types.SchemaDefinitionNode;
 }
 /**
@@ -10,12 +10,11 @@ export interface CollectorType {
  * referenced types.
  */
 export declare class Collector implements CollectorType {
-    resolved: types.TypeDefinitionMap;
+    types: types.TypeDefinitionMap;
     root?: types.SchemaDefinitionNode;
     private checker;
-    private unresolved;
-    private unresolvedCircular;
-    private circularlyExtending;
+    private ts2GqlMap;
+    private gql2TsMap;
     constructor(program: typescript.Program);
     addRootNode(node: typescript.InterfaceDeclaration): void;
     mergeOverrides(node: typescript.InterfaceDeclaration, name: types.SymbolName): void;
@@ -26,7 +25,6 @@ export declare class Collector implements CollectorType {
     _walkType: (node: typescript.Node) => types.TypeNode;
     _walkUnion(node: typescript.UnionTypeNode): types.TypeNode;
     _walkUnion(node: typescript.UnionTypeNode, name: types.SymbolName, doc?: doctrine.ParseResult): types.UnionTypeDefinitionNode | types.ScalarTypeDefinitionNode | types.DefinitionAliasNode | types.EnumTypeDefinitionNode;
-    _walkUnionMembersFlat(unionTypes: typescript.Node[]): types.TypeNode[];
     _collectInterfaceDeclaration(node: typescript.InterfaceDeclaration): types.InterfaceTypeDefinitionNode | types.InputObjectTypeDefinition;
     _collectFieldDefinition(field: typescript.TypeElement, category: types.GQLTypeCategory.INPUT): types.InputFieldDefinitionNode;
     _collectFieldDefinition(field: typescript.TypeElement, category: types.GQLTypeCategory.OUTPUT): types.OutputFieldDefinitionNode;
@@ -49,5 +47,5 @@ export declare class Collector implements CollectorType {
     _concrete(node: types.InterfaceTypeDefinitionNode): types.ObjectTypeDefinitionNode;
     _directiveFromDocTag(jsDocTag: doctrine.Tag): types.DirectiveDefinitionNode;
     _filterNullUndefined(nodes: typescript.NodeArray<typescript.Node>): typescript.Node[];
-    _unwrapAlias(referenced: types.TypeDefinitionNode): types.TypeDefinitionNode | undefined;
+    _unwrapAlias(referenced: types.TypeDefinitionNode): types.TypeDefinitionNode;
 }

@@ -24,8 +24,7 @@ export default class Emitter {
     _emitEnumFields(fields: types.EnumFieldDefinitionNode[]): string;
     _emitUnion(node: types.UnionTypeDefinitionNode, name: types.SymbolName): string;
     _emitScalarDefinition(node: types.ScalarTypeDefinitionNode, name: types.SymbolName): string;
-    _emitReference(node: types.ReferenceNode): string;
-    _emitExpression: (node: types.ObjectTypeNode | types.CustomScalarTypeNode | types.StringTypeNode | types.IntTypeNode | types.FloatTypeNode | types.BooleanTypeNode | types.IDTypeNode | types.EnumTypeNode | types.InputObjectTypeNode | types.ListNode<types.NamedInputTypeNode> | types.InterfaceTypeNode | types.UnionTypeNode | types.ListNode<types.NamedOutputTypeNode> | types.ValueNode | types.CircularReferenceTypeNode | types.ListNode<types.NamedTypeNode>) => string;
+    _emitExpression: (node: types.ObjectTypeNode | types.CustomScalarTypeNode | types.StringTypeNode | types.IntTypeNode | types.FloatTypeNode | types.BooleanTypeNode | types.IDTypeNode | types.EnumTypeNode | types.InputObjectTypeNode | types.ListNode<types.NamedInputTypeNode> | types.InterfaceTypeNode | types.UnionTypeNode | types.ListNode<types.NamedOutputTypeNode> | types.ValueNode | types.ListNode<types.NamedTypeNode>) => string;
     _name: (name: string) => string;
     _indent(content: string | string[]): string;
 }
