@@ -25,6 +25,7 @@ export declare class Collector implements CollectorType {
     _walkType: (node: typescript.Node) => types.TypeNode;
     _walkUnion(node: typescript.UnionTypeNode): types.TypeNode;
     _walkUnion(node: typescript.UnionTypeNode, name: types.SymbolName, doc?: doctrine.ParseResult): types.UnionTypeDefinitionNode | types.ScalarTypeDefinitionNode | types.DefinitionAliasNode | types.EnumTypeDefinitionNode;
+    _walkUnionMembersFlat(unionTypes: typescript.Node[]): types.TypeNode[];
     _collectInterfaceDeclaration(node: typescript.InterfaceDeclaration): types.InterfaceTypeDefinitionNode | types.InputObjectTypeDefinition;
     _collectFieldDefinition(field: typescript.TypeElement, category: types.GQLTypeCategory.INPUT): types.InputFieldDefinitionNode;
     _collectFieldDefinition(field: typescript.TypeElement, category: types.GQLTypeCategory.OUTPUT): types.OutputFieldDefinitionNode;
