@@ -2,7 +2,7 @@ import * as doctrine from 'doctrine';
 import * as typescript from 'typescript';
 import * as types from './types';
 export interface CollectorType {
-    types: types.TypeDefinitionMap;
+    resolved: types.TypeDefinitionMap;
     root?: types.SchemaDefinitionNode;
 }
 /**
@@ -10,11 +10,12 @@ export interface CollectorType {
  * referenced types.
  */
 export declare class Collector implements CollectorType {
-    types: types.TypeDefinitionMap;
+    resolved: types.TypeDefinitionMap;
     root?: types.SchemaDefinitionNode;
     private checker;
-    private ts2GqlMap;
-    private gql2TsMap;
+    private unresolved;
+    private unresolvedCircular;
+    private circularlyExtending;
     constructor(program: typescript.Program);
     addRootNode(node: typescript.InterfaceDeclaration): void;
     mergeOverrides(node: typescript.InterfaceDeclaration, name: types.SymbolName): void;
@@ -48,5 +49,5 @@ export declare class Collector implements CollectorType {
     _concrete(node: types.InterfaceTypeDefinitionNode): types.ObjectTypeDefinitionNode;
     _directiveFromDocTag(jsDocTag: doctrine.Tag): types.DirectiveDefinitionNode;
     _filterNullUndefined(nodes: typescript.NodeArray<typescript.Node>): typescript.Node[];
-    _unwrapAlias(referenced: types.TypeDefinitionNode): types.TypeDefinitionNode;
+    _unwrapAlias(referenced: types.TypeDefinitionNode): types.TypeDefinitionNode | undefined;
 }

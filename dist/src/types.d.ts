@@ -28,6 +28,7 @@ export declare enum GQLTypeKind {
     ENUM_TYPE = "enum type",
     INPUT_OBJECT_TYPE = "input object type",
     UNION_TYPE = "union type",
+    CIRCULAR_TYPE = "circular type",
     CUSTOM_SCALAR_TYPE = "custom scalar",
     STRING_TYPE = "string",
     INT_TYPE = "int",
@@ -124,7 +125,7 @@ export declare enum GQLTypeCategory {
 }
 export declare type NamedInputTypeNode = ScalarTypeNode | EnumTypeNode | InputObjectTypeNode;
 export declare type NamedOutputTypeNode = ScalarTypeNode | ObjectTypeNode | InterfaceTypeNode | UnionTypeNode | EnumTypeNode;
-export declare type NamedTypeNode = NamedInputTypeNode | NamedOutputTypeNode;
+export declare type NamedTypeNode = NamedInputTypeNode | NamedOutputTypeNode | CircularReferenceTypeNode;
 export declare type WrappingInputTypeNode = ListInputTypeNode;
 export declare type WrappingOutputTypeNode = ListOutputTypeNode;
 export declare type WrappingTypeNode = ListInputTypeNode | ListOutputTypeNode | ListTypeNode;
@@ -140,8 +141,8 @@ export interface ListNode<T extends GraphQLTypeNode & NullableNode> extends Wrap
 export declare type ListInputTypeNode = ListNode<NamedInputTypeNode>;
 export declare type ListOutputTypeNode = ListNode<NamedOutputTypeNode>;
 export declare type ListTypeNode = ListNode<NamedTypeNode>;
-export declare type ReferenceTypeNode = ObjectTypeNode | InterfaceTypeNode | EnumTypeNode | InputObjectTypeNode | UnionTypeNode | CustomScalarTypeNode;
-export declare const DefinitionFromType: Map<GQLDefinitionKind, GQLTypeKind.OBJECT_TYPE | GQLTypeKind.INTERFACE_TYPE | GQLTypeKind.ENUM_TYPE | GQLTypeKind.INPUT_OBJECT_TYPE | GQLTypeKind.UNION_TYPE | GQLTypeKind.CUSTOM_SCALAR_TYPE>;
+export declare type ReferenceTypeNode = ObjectTypeNode | InterfaceTypeNode | EnumTypeNode | InputObjectTypeNode | UnionTypeNode | CustomScalarTypeNode | CircularReferenceTypeNode;
+export declare const DefinitionFromType: Map<GQLDefinitionKind, GQLTypeKind.OBJECT_TYPE | GQLTypeKind.INTERFACE_TYPE | GQLTypeKind.ENUM_TYPE | GQLTypeKind.INPUT_OBJECT_TYPE | GQLTypeKind.UNION_TYPE | GQLTypeKind.CIRCULAR_TYPE | GQLTypeKind.CUSTOM_SCALAR_TYPE>;
 export interface ObjectTypeNode extends GraphQLTypeNode, ReferenceNode {
     kind: GQLTypeKind.OBJECT_TYPE;
 }
@@ -156,6 +157,9 @@ export interface InputObjectTypeNode extends GraphQLTypeNode, ReferenceNode {
 }
 export interface UnionTypeNode extends GraphQLTypeNode, ReferenceNode {
     kind: GQLTypeKind.UNION_TYPE;
+}
+export interface CircularReferenceTypeNode extends GraphQLTypeNode, ReferenceNode {
+    kind: GQLTypeKind.CIRCULAR_TYPE;
 }
 export interface CustomScalarTypeNode extends GraphQLTypeNode, ReferenceNode {
     kind: GQLTypeKind.CUSTOM_SCALAR_TYPE;
